@@ -13,7 +13,7 @@ Meteor.publish("questions", function () {
   return Questions.find();
 });
 
-var questionTime = 10; //seconds
+var questionTime = 15; //seconds
 var numberOfQuestion = 5;
 var currentQuestionIndex = 0;
 var sessionState = "init";
@@ -36,18 +36,22 @@ function gameLoop()
       currentQuestionIndex = 0;
       sessionTime = 0;
       sessionState = "displayNewQuestion";
+      changeQuestionState(currentQuestionIndex,"active");
       console.log("init");
       break;
     case "displayNewQuestion":
       sessionTime++;
       var temp = (currentQuestionIndex + 1) * questionTime;
-      
+
       if(sessionTime >= temp)
       {
+        changeQuestionState(currentQuestionIndex-1,"answered");
+        changeQuestionState(currentQuestionIndex,"active");
         currentQuestionIndex++;
         console.log("displayNewQuestion: " + currentQuestionIndex);
         if(currentQuestionIndex >= numberOfQuestion)
         {
+          changeQuestionState(currentQuestionIndex,"answered");
           sessionState = "end";
           endTimeCount = 0;
           console.log("end");
@@ -73,6 +77,9 @@ function gameLoop()
 
 var sessionCount = 0;
 
+function changeQuestionState(i,qstate){
+  Questions.update({index: i},{$set:{state: qstate}});
+};
 function generateQuestions()
 {
   //clear questions
@@ -84,7 +91,8 @@ function generateQuestions()
       question: "question " + i,
       answers: ["answer1","answer2"],
       correctAnswer: 1,
-      state: "unanswered"
+      state: "unanswered",
+      index: i
     };
     Questions.insert(qa);
   }

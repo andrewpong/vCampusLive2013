@@ -14,7 +14,12 @@
     {{else}}
     No Questions!
     {{/if}}
-
+<br />
+    {{#each questionsList}}
+      Name: {{question}} Answer: {{correctAnswer}} State: {{state}}
+<br />
+<br />
+    {{/each}}
 
 </template>
 

@@ -18,9 +18,18 @@ Meteor.startup(function () {
   });
 });
 
+
+///////////////////////////////////////////////////////////////////////////////
+// Questions
+
 Template.test.data = function(){
   return Questions.find().count();
 };
+
+Template.test.questionsList = function(){
+  return Questions.find();
+};
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Party details sidebar

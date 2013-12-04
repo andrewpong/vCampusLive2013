@@ -129,19 +129,66 @@ function generateQuestion(i)
     
     var getTagSnapshot = tagSnapshotUrlFormat.format(webApiServer,piServer,"cdt158");
     //console.log(getTagSnapshot);
-    
-    var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/6c1e7597-862b-4b4e-a9d0-4f0c52303fb2/attributes/ff4d67b8-f16b-0557-0831-d671c1f629de/snapshot";
-
-
-    var qa = {   
-        question: "What is the chance of rain today in Honolulu?",
-        answers: ["0%", "0%"],
-        correctAnswer: 0,
-        state: "unanswered",
-        index: i
-      };
-    var test = getPIData(urlCall,qa);
-
+    if(i===0)
+    {
+      var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/6c1e7597-862b-4b4e-a9d0-4f0c52303fb2/attributes/ff4d67b8-f16b-0557-0831-d671c1f629de/snapshot";
+      var qa = {   
+          question: "What is the chance of rain today in Honolulu?",
+          answers: ["0%", "0%"],
+          correctAnswer: 0,
+          state: "unanswered",
+          index: i
+        };
+      var test = getPIData(urlCall,qa);
+    }
+    if(i===1)
+    {
+      var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/dd171368-90ef-4e70-a94e-db855473492e/attributes/120f3e31-0adc-071a-118a-cd58b0c4918d/snapshot";
+      var qa = {   
+          question: "What is the % cloud cover today in Devner?",
+          answers: ["0%", "0%"],
+          correctAnswer: 0,
+          state: "unanswered",
+          index: i
+        };
+      var test = getPIData(urlCall,qa);
+    }
+    if(i===2)
+    {
+      var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/f2457c7c-520f-417c-808e-22aeb2d40bcb/attributes/048105f8-1599-0746-0d81-2eb38e37b0f2/snapshot"
+      var qa = {   
+          question: "What is the current temperature in Dover?",
+          answers: ["0F", "0F"],
+          correctAnswer: 0,
+          state: "unanswered",
+          index: i
+        };
+      var test = getPIData(urlCall,qa);
+    }
+    if(i===3)
+    {
+      var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/d84ef72a-cd3e-43f1-940a-e75d6f2da1dd/attributes/7bc7099f-185d-02b6-3c8a-73b47f9b366e/snapshot";
+      var qa = {   
+          question: "What is the population of Boston?",
+          answers: ["0", "0"],
+          correctAnswer: 0,
+          state: "unanswered",
+          index: i
+        };
+      var test = getPIData(urlCall,qa);
+    }
+    if(i===4)
+    {
+      var urlCall = "https://vcl13hack.pica.pipreview.com/saturn1/piwebapi/pisystems/delorean1/databases/weather/elements/2f4c4a59-a47e-415d-a9a6-97fbc5dbf730/attributes/bc1f5876-d33e-0f44-0847-0e86561de15c/snapshot";
+      var qa = {   
+          question: "What is the chance of rain tomorrow in Boise?",
+          answers: ["0%", "0%"],
+          correctAnswer: 0,
+          state: "unanswered",
+          index: i
+        };
+      var test = getPIData(urlCall,qa);
+    }
 
 
     //var city2 = getPIData("test");
@@ -176,7 +223,31 @@ function getPIData(query, qa){
                 console.log('Status code = 200!');
                 console.log(result.content);
                 var data = JSON.parse(result.content);
-                qa.answers = [data.Value + "%", data.Value + 5 + "%"],
+                if(qa.index === 0)
+                {
+                  qa.answers = [data.Value + "%", data.Value + 5 + "%"];
+                  qa.correctAnswer = 0;
+                }
+                if(qa.index === 1)
+                {
+                  qa.answers = [data.Value + "%", data.Value + 10 + "%"];
+                  qa.correctAnswer = 0;
+                }
+                if(qa.index === 2)
+                {
+                  qa.answers = [data.Value - 11 + "F", data.Value + "F"];
+                  qa.correctAnswer = 1;
+                }
+                if(qa.index === 3)
+                {
+                  qa.answers = [data.Value + 18929, data.Value];
+                  qa.correctAnswer = 1;
+                }
+                if(qa.index === 4)
+                {
+                  qa.answers = [data.Value + "%", data.Value + 20 + "%"];
+                  qa.correctAnswer = 0;
+                }
                 console.log(qa);
                 Questions.insert(qa);
                 return result.content;

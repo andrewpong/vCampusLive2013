@@ -1,6 +1,8 @@
 // All Tomorrow's Parties -- data model
 // Loaded on both the client and the server
 
+Questions = new Meteor.Collection("questions");
+
 ///////////////////////////////////////////////////////////////////////////////
 // Parties
 
@@ -14,6 +16,7 @@
     rsvps: Array of objects like {user: userId, rsvp: "yes"} (or "no"/"maybe")
 */
 Parties = new Meteor.Collection("parties");
+
 
 Parties.allow({
   insert: function (userId, party) {

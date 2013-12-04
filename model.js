@@ -3,6 +3,7 @@
 
 Questions = new Meteor.Collection("questions");
 
+Players = new Meteor.Collection("players");
 ///////////////////////////////////////////////////////////////////////////////
 // Parties
 

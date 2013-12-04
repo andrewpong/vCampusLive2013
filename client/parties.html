@@ -1,5 +1,5 @@
 <head>
-  <title>All Tomorrow's Parties</title>
+  <title>PI GAMES</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -34,31 +34,18 @@
 
         <div class="row">
           <div class="span3">
+
             {{> leaderboard}}
+            {{> session}}
             {{#if currentUser}}
-            <div class="pagination-centered">
-              <em><small>Double click the map to post a party!</small></em>
-            </div>
+            
             {{/if}}
           </div>
-          <div class="span6">
-            {{> details}}
+          <div class="span9">
+            {{> questions}}
           </div>
         </div>
 
-        <div class="row">
-          <div class="span3">
-            {{> leaderboard}}
-            {{#if currentUser}}
-            <div class="pagination-centered">
-              <em><small>Double click the map to post a party!</small></em>
-            </div>
-            {{/if}}
-          </div>
-          <div class="span6">
-            {{> details}}
-          </div>
-        </div>
 
 
 
@@ -69,12 +56,40 @@
   </div>
 </template>
 
-
+<template name="question">
+  <div class="row">
+    <div class="span1">
+      <a href="#" class="btn btn-success">
+          <i class="icon-pencil icon-white"></i>
+          <span><strong>Write</strong></span>            
+      </a>
+    </div>
+    <div class="span6">
+      <h4><a href="#">Question 1</a></h4>
+      <p>Which city generates more solar power per capital?</p>
+    </div>
+    <div class="span1">
+      <a href="#" class="btn btn-primary">
+        <i class="icon-pencil icon-white"></i>
+        <span><strong>Write</strong></span>            
+      </a>
+    </div>
+    <div class="span1">
+      <a href="#" class="btn btn-warning">
+        <i class="icon-pencil icon-white"></i>
+        <span><strong>Write</strong></span>            
+      </a>
+    </div>
+  </div>
+</template>
 
 
 
 <template name="leaderboard">
   <div class="well">
+    <div class="pagination-centered">
+      <h4>Hall of Fame</h4>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -90,118 +105,79 @@
         </tr>
         <tr>
           <td>2</td>
-
           <td>ash11927</td>
-
         </tr>
         <tr>
           <td>3</td>
-      
           <td>audann84</td>
-
         </tr>
         <tr>
           <td>4</td>
-
           <td>jr5527</td>
-
         </tr>
         <tr>
           <td>5</td>
-
           <td>aaron_butler</td>
- 
         </tr>
         <tr>
           <td>6</td>
-
           <td>cab79</td>
-
         </tr>
       </tbody>
     </table>
-</div>
-</template> 
+  </div>
+</template>
+
+<template name="session">
+  <div class="well">
+    <div class="pagination-centered">
+      <h4>Currently Playing</h4>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Username</th>
+          <th style="width: 36px;"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>the_mark7</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>ash11927</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>audann84</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>jr5527</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>aaron_butler</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>cab79</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
 
 
 <template name="questions">
-
-<div class="well">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-          <th style="width: 36px;"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Tompson</td>
-          <td>the_mark7</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Ashley</td>
-          <td>Jacobs</td>
-          <td>ash11927</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Audrey</td>
-          <td>Ann</td>
-          <td>audann84</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>John</td>
-          <td>Robinson</td>
-          <td>jr5527</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Aaron</td>
-          <td>Butler</td>
-          <td>aaron_butler</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>Chris</td>
-          <td>Albert</td>
-          <td>cab79</td>
-          <td>
-              <a href="user.html"><i class="icon-pencil"></i></a>
-              <a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</div>
-
+{{> question}}
+{{> question}}
+{{> question}}
+{{> question}}
+{{> question}}
   </template>
 
 

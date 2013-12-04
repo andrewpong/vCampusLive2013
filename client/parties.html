@@ -4,8 +4,20 @@
 </head>
 
 <body>
+  {{>test}}
   {{> page}}
+
 </body>
+<template name="test">
+   {{#if data}}
+    I have questions!
+    {{else}}
+    No Questions!
+    {{/if}}
+
+
+</template>
+
 
 <template name="page">
   {{#if showCreateDialog}}

@@ -18,6 +18,10 @@ Meteor.startup(function () {
   });
 });
 
+Template.test.data = function(){
+  return Questions.find().count();
+};
+
 ///////////////////////////////////////////////////////////////////////////////
 // Party details sidebar
 

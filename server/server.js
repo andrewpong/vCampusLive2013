@@ -13,7 +13,67 @@ Meteor.publish("questions", function () {
   return Questions.find();
 });
 
-Meteor.startup( function()
+var questionTime = 10; //seconds
+var numberOfQuestion = 5;
+var currentQuestionIndex = 0;
+var sessionState = "init";
+var sessionTime = 0;
+var endTime = 10; //seconds
+var endTimeCount = 0;
+
+Meteor.startup( function(){
+
+  Meteor.setInterval(gameLoop, 1000);
+
+  });
+
+function gameLoop()
+{
+  switch(sessionState)
+  {
+    case "init":
+      generateQuestions();
+      currentQuestionIndex = 0;
+      sessionTime = 0;
+      sessionState = "displayNewQuestion";
+      console.log("init");
+      break;
+    case "displayNewQuestion":
+      sessionTime++;
+      var temp = (currentQuestionIndex + 1) * questionTime;
+      
+      if(sessionTime >= temp)
+      {
+        currentQuestionIndex++;
+        console.log("displayNewQuestion: " + currentQuestionIndex);
+        if(currentQuestionIndex >= numberOfQuestion)
+        {
+          sessionState = "end";
+          endTimeCount = 0;
+          console.log("end");
+
+
+        }
+      };
+      break;
+    case "end":
+      endTimeCount++;
+      console.log("endTimeCount: " + endTimeCount);
+      if(endTimeCount > endTime)
+      {
+        sessionState = "init";
+      }
+
+      break;
+    default:
+      //code to be executed if n is different from case 1 and 2
+  }
+};
+
+
+var sessionCount = 0;
+
+function generateQuestions()
 {
   //clear questions
   Questions.remove({});
@@ -28,17 +88,6 @@ Meteor.startup( function()
     };
     Questions.insert(qa);
   }
-});
-
-  // Meteor.startup(function () {
-  //   if (Players.find().count() === 0) {
-  //     var names = ["Ada Lovelace",
-  //                  "Grace Hopper",
-  //                  "Marie Curie",
-  //                  "Carl Friedrich Gauss",
-  //                  "Nikola Tesla",
-  //                  "Claude Shannon"];
-  //     for (var i = 0; i < names.length; i++)
-  //       Players.insert({name: names[i], score: Math.floor(Random.fraction()*10)*5});
-  //   }
-  // });
+  sessionCount++;
+  console.log("sessonCount: " + sessionCount);
+}

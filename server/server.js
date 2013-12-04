@@ -9,37 +9,36 @@ Meteor.publish("parties", function () {
     {$or: [{"public": true}, {invited: this.userId}, {owner: this.userId}]});
 });
 
-// Meteor.startup( function()
-// {
-//   // //clear questions
-//   // Questions.remove({});
-//   // //add questions
-//   // for (var i=0; i<5; i++)
-//   // {
-//   //   var qa = {   
-//   //     question: "question " + i,
-//   //     answers: ["answer1","answer2"],
-//   //     correctAnswer: 1
-//   //   };
-//   //   //Questions.insert(qa);
-//   // }
+Meteor.publish("questions", function () {
+  return Questions.find();
+});
 
-//     var groceriesId = Lists.insert({name: "Groceries"});
-//     Questions.insert({list: groceriesId, name: "Watercress"});
-//     Questions.insert({list: groceriesId, name: "Persimmons"});
+Meteor.startup( function()
+{
+  //clear questions
+  Questions.remove({});
+  //add questions
+  for (var i=0; i<5; i++)
+  {
+    var qa = {   
+      question: "question " + i,
+      answers: ["answer1","answer2"],
+      correctAnswer: 1,
+      state: "unanswered"
+    };
+    Questions.insert(qa);
+  }
+});
 
-
-// });
-
-  Meteor.startup(function () {
-    if (Players.find().count() === 0) {
-      var names = ["Ada Lovelace",
-                   "Grace Hopper",
-                   "Marie Curie",
-                   "Carl Friedrich Gauss",
-                   "Nikola Tesla",
-                   "Claude Shannon"];
-      for (var i = 0; i < names.length; i++)
-        Players.insert({name: names[i], score: Math.floor(Random.fraction()*10)*5});
-    }
-  });
+  // Meteor.startup(function () {
+  //   if (Players.find().count() === 0) {
+  //     var names = ["Ada Lovelace",
+  //                  "Grace Hopper",
+  //                  "Marie Curie",
+  //                  "Carl Friedrich Gauss",
+  //                  "Nikola Tesla",
+  //                  "Claude Shannon"];
+  //     for (var i = 0; i < names.length; i++)
+  //       Players.insert({name: names[i], score: Math.floor(Random.fraction()*10)*5});
+  //   }
+  // });

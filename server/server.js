@@ -51,7 +51,7 @@ function gameLoop()
         console.log("displayNewQuestion: " + currentQuestionIndex);
         if(currentQuestionIndex >= numberOfQuestion)
         {
-          changeQuestionState(currentQuestionIndex,"answered");
+          changeQuestionState(currentQuestionIndex-1,"answered");
           sessionState = "end";
           endTimeCount = 0;
           console.log("end");

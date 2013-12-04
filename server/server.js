@@ -78,10 +78,10 @@ function generateQuestions()
   //clear questions
   Questions.remove({});
   //add questions
-  for (var i=0; i<5; i++)
+  for (var i=0; i<20; i++)
   {
     var qa = {   
-      question: "question " + i,
+      question: "Why did Benny eat " + i + " spicy chickens?",
       answers: ["answer1","answer2"],
       correctAnswer: 1,
       state: "unanswered"

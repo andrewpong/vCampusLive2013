@@ -22,11 +22,11 @@ Meteor.startup(function () {
 ///////////////////////////////////////////////////////////////////////////////
 // Questions
 
-Template.test.data = function(){
+Template.gameboard.data = function(){
   return Questions.find().count();
 };
 
-Template.test.questionsList = function(){
+Template.gameboard.questionsList = function(){
   return Questions.find();
 };
 
